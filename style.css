@@ -51,7 +51,7 @@ header {
 }
 
 .search-bar input {
-    width: 100%;
+    width: 98%;
     padding: 10px;
     border: 2px solid var(--secondary-color);
     border-radius: 5px;
