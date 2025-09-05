@@ -1,25 +1,28 @@
 [
   {
     "club": "Boca Juniors",
-    "nombre": "Boca 1993",
+    "nombre": "Boca 93/94",
     "tipo": "Retro",
     "version": "Fan",
     "imagenes": [
       "img/boca93.jpg",
-      "img/boca98_2.jpg",
-      "img/boca98_3.jpg"
+      "img/boca93_1.jpg",
+      "img/boca93_2.jpg",
+      "img/boca93_3.jpg",
+      "img/boca93_4.jpg"
     ],
     "link": "https://wa.me/54911XXXX?text=Hola,%20me%20interesa%20la%20camiseta%20Boca%201998"
   },
   {
     "club": "River Plate",
-    "nombre": "River 2024",
+    "nombre": "River 25/26",
     "tipo": "Actual",
     "version": "Jugador",
     "imagenes": [
-      "img/river2024_1.jpg",
-      "img/river2024_2.jpg",
-      "img/river2024_3.jpg"
+      "img/river2025.png",
+      "img/river2025_1.png",
+      "img/river2025_2.png",
+      "img/river2025_2.png"
     ],
     "link": "https://wa.me/54911XXXX?text=Hola,%20me%20interesa%20la%20camiseta%20River%202024"
   }
