@@ -1,42 +1,26 @@
 [
   {
     "club": "Boca Juniors",
-    "nombre": "Boca 1993/94",
+    "nombre": "Boca 1993",
     "tipo": "Retro",
     "version": "Fan",
-    "imagen": "img/boca93.jpg",
-    "link": "https://wa.me/54911XXXX?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20Boca%201998"
+    "imagenes": [
+      "img/boca93.jpg",
+      "img/boca98_2.jpg",
+      "img/boca98_3.jpg"
+    ],
+    "link": "https://wa.me/54911XXXX?text=Hola,%20me%20interesa%20la%20camiseta%20Boca%201998"
   },
   {
     "club": "River Plate",
     "nombre": "River 2024",
     "tipo": "Actual",
     "version": "Jugador",
-    "imagen": "img/river2024.jpg",
+    "imagenes": [
+      "img/river2024_1.jpg",
+      "img/river2024_2.jpg",
+      "img/river2024_3.jpg"
+    ],
     "link": "https://wa.me/54911XXXX?text=Hola,%20me%20interesa%20la%20camiseta%20River%202024"
-  },
-  {
-    "club": "Selección Argentina",
-    "nombre": "Argentina 1986",
-    "tipo": "Retro",
-    "version": "Fan",
-    "imagen": "img/argentina86.jpg",
-    "link": "https://wa.me/54911XXXX?text=Hola,%20me%20interesa%20la%20camiseta%20Argentina%201986"
-  },
-  {
-    "club": "Manchester City",
-    "nombre": "City 2024",
-    "tipo": "Actual",
-    "version": "Jugador",
-    "imagen": "img/manchestercity2024.jpg",
-    "link": "https://wa.me/54911XXXX?text=Hola,%20me%20interesa%20la%20camiseta%20City%202024"
-  },
-  {
-    "club": "Real Madrid",
-    "nombre": "Real Madrid 2002",
-    "tipo": "Retro",
-    "version": "Fan",
-    "imagen": "img/realmadrid2002.jpg",
-    "link": "https://wa.me/54911XXXX?text=Hola,%20me%20interesa%20la%20camiseta%20Real%20Madrid%202002"
   }
 ]
