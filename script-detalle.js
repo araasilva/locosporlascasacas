@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="slider-full-images">
             ${camiseta.imagenes.map(src => `<img src="${src}" alt="${camiseta.nombre}" loading="lazy">`).join('')}
         </div>
-        <button class="slider-btn prev-full"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-btn next-full"><i class="fas fa-chevron-right"></i></button>
+        <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
     `;
     detalleSliderContainer.innerHTML = sliderHTML;
 
