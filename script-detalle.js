@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     detalleInfo.innerHTML = infoHTML;
 
     // Lógica para el slider de la página de detalles
-    const prevBtn = document.querySelector('.prev-full');
-    const nextBtn = document.querySelector('.next-full');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
     const sliderFullImages = document.querySelector('.slider-full-images');
 
     prevBtn.addEventListener('click', () => moverSliderDetalle('prev'));
