@@ -38,20 +38,25 @@ function renderizarCatalogo(camisetasToDisplay) {
                 <a href="${camiseta.link}" class="btn-comprar" target="_blank">
                     <i class="fab fa-whatsapp"></i> Consultar
                 </a>
-                <button class="btn-ver-mas" data-index="${index}">Ver Fotos</button>
             </div>
         `;
         catalogoContainer.appendChild(camisetaCard);
 
-        // Agrega los eventos de clic a los botones del slider y al nuevo botón
+        // Agrega los eventos de clic a los botones del slider
         const prevBtn = camisetaCard.querySelector('.prev');
         const nextBtn = camisetaCard.querySelector('.next');
-        const verMasBtn = camisetaCard.querySelector('.btn-ver-mas');
         
-        prevBtn.addEventListener('click', () => moverSlider(camisetaCard, 'prev'));
-        nextBtn.addEventListener('click', () => moverSlider(camisetaCard, 'next'));
-        verMasBtn.addEventListener('click', () => {
-            // Guarda la camiseta seleccionada en localStorage y redirige
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita que el clic en el botón active el evento de la tarjeta
+            moverSlider(camisetaCard, 'prev');
+        });
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita que el clic en el botón active el evento de la tarjeta
+            moverSlider(camisetaCard, 'next');
+        });
+        
+        // **Agrega el evento de clic a la tarjeta completa**
+        camisetaCard.addEventListener('click', () => {
             localStorage.setItem('camisetaSeleccionada', JSON.stringify(camisetas[index]));
             window.location.href = 'detalle.html';
         });
