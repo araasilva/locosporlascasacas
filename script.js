@@ -10,7 +10,7 @@ const filterButtons = document.querySelectorAll('.filter-btn');
  * @param {Array} camisetasToDisplay - El array de camisetas a mostrar.
  */
 function renderizarCatalogo(camisetasToDisplay) {
-    catalogoContainer.innerHTML = ''; // Limpia el contenedor
+    catalogoContainer.innerHTML = '';
     if (camisetasToDisplay.length === 0) {
         catalogoContainer.innerHTML = '<p class="no-results">No se encontraron camisetas que coincidan con la búsqueda. 😔</p>';
         return;
@@ -19,7 +19,7 @@ function renderizarCatalogo(camisetasToDisplay) {
     camisetasToDisplay.forEach((camiseta, index) => {
         const camisetaCard = document.createElement('div');
         camisetaCard.classList.add('camiseta-card');
-        camisetaCard.dataset.index = index; // Identificador para el slider
+        camisetaCard.dataset.index = index;
 
         // Genera el HTML para el slider
         const sliderImagesHTML = camiseta.imagenes.map(src => `<img src="${src}" alt="${camiseta.nombre}" loading="lazy">`).join('');
@@ -38,16 +38,23 @@ function renderizarCatalogo(camisetasToDisplay) {
                 <a href="${camiseta.link}" class="btn-comprar" target="_blank">
                     <i class="fab fa-whatsapp"></i> Consultar
                 </a>
+                <button class="btn-ver-mas" data-index="${index}">Ver Fotos</button>
             </div>
         `;
         catalogoContainer.appendChild(camisetaCard);
 
-        // Agrega los eventos de clic a los botones del slider para esta tarjeta
+        // Agrega los eventos de clic a los botones del slider y al nuevo botón
         const prevBtn = camisetaCard.querySelector('.prev');
         const nextBtn = camisetaCard.querySelector('.next');
+        const verMasBtn = camisetaCard.querySelector('.btn-ver-mas');
         
         prevBtn.addEventListener('click', () => moverSlider(camisetaCard, 'prev'));
         nextBtn.addEventListener('click', () => moverSlider(camisetaCard, 'next'));
+        verMasBtn.addEventListener('click', () => {
+            // Guarda la camiseta seleccionada en localStorage y redirige
+            localStorage.setItem('camisetaSeleccionada', JSON.stringify(camisetas[index]));
+            window.location.href = 'detalle.html';
+        });
     });
 }
 
@@ -58,7 +65,8 @@ function renderizarCatalogo(camisetasToDisplay) {
  */
 function moverSlider(card, direction) {
     const sliderImages = card.querySelector('.slider-images');
-    const totalImages = camisetas[card.dataset.index].imagenes.length;
+    const index = card.dataset.index;
+    const totalImages = camisetas[index].imagenes.length;
     const imageWidth = card.offsetWidth;
     let newPosition = parseFloat(sliderImages.style.transform.replace('translateX(', '').replace('px)', '')) || 0;
 
@@ -66,13 +74,13 @@ function moverSlider(card, direction) {
         if (newPosition > -(imageWidth * (totalImages - 1))) {
             newPosition -= imageWidth;
         } else {
-            newPosition = 0; // Regresa al inicio
+            newPosition = 0;
         }
     } else if (direction === 'prev') {
         if (newPosition < 0) {
             newPosition += imageWidth;
         } else {
-            newPosition = -(imageWidth * (totalImages - 1)); // Va al final
+            newPosition = -(imageWidth * (totalImages - 1));
         }
     }
     sliderImages.style.transform = `translateX(${newPosition}px)`;
@@ -86,7 +94,7 @@ function moverSlider(card, direction) {
 function filtrarCamisetas(searchTerm, filterType) {
     const term = searchTerm.toLowerCase();
     const camisetasFiltradas = camisetas.filter(camiseta => {
-        const matchesSearch = camiseta.nombre.toLowerCase().includes(term);
+        const matchesSearch = camiseta.nombre.toLowerCase().includes(term) || camiseta.club.toLowerCase().includes(term);
         const matchesFilter = (
             filterType === 'all' ||
             camiseta.tipo === filterType ||
@@ -137,5 +145,4 @@ filterButtons.forEach(button => {
     });
 });
 
-// Llama a la función de carga al iniciar la página
 document.addEventListener('DOMContentLoaded', cargarCatalogo);
