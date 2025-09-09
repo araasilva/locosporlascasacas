@@ -149,5 +149,17 @@
       "img/madrid11_2.jpg"
     ],
     "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20del%20Real%20Madrid%2011/12"
+  },
+  {
+    "club": "Atlético Madrid",
+    "nombre": "Atlético Madrid 25/26",
+    "tipo": "Actual",
+    "version": "Jugador",
+    "imagenes": [
+      "img/atletico25.jpg",
+      "img/atletico25_1.jpg",
+      "img/atletico25_2.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20del%20Atlético%20Madrid%2025/26%20version%20jugador."
   }
 ]
