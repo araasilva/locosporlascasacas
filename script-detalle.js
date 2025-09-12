@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const infoHTML = `
         <h2>${camiseta.club}</h2>
         <p><strong>Nombre:</strong> ${camiseta.nombre}</p>
-        <p><strong>Tipo:</strong> ${camiseta.tipo}</p>
         <p><strong>Versión:</strong> ${camiseta.version}</p>
         <a href="${camiseta.link}" class="btn-comprar" target="_blank">
             <i class="fab fa-whatsapp"></i> Consultar

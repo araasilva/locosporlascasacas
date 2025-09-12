@@ -2,8 +2,7 @@
   {
     "club": "Boca Juniors",
     "nombre": "Boca 93/94",
-    "tipo": "Retro",
-    "version": "Fan",
+    "version": "Retro",
     "imagenes": [
       "img/boca93.jpg",
       "img/boca93_1.jpg",
@@ -16,8 +15,7 @@
   {
     "club": "Boca Juniors",
     "nombre": "Boca Juniors 07/08",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/boca07.jpg",
       "img/boca07_1.jpg",
@@ -28,8 +26,7 @@
   {
     "club": "Racing Club de Avellaneda",
     "nombre": "Racing Club de Avellaneda 03/04",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/racing03.jpg",
       "img/racing03_1.jpg",
@@ -40,8 +37,7 @@
   {
     "club": "River Plate",
     "nombre": "River Plate 96/98",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/river96.jpg",
       "img/river96_1.jpg",
@@ -52,8 +48,7 @@
   {
     "club": "River Plate",
     "nombre": "River Plate titular 25/26",
-    "tipo": "Actual",
-    "version": "Jugador",
+    "version": "Player",
     "imagenes": [
       "img/river2025.png",
       "img/river2025_1.png",
@@ -65,8 +60,7 @@
   {
     "club": "San Lorenzo de Almagro",
     "nombre": "San Lorenzo de Almagro 14/15",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/sanlorenzo14.jpg",
       "img/sanlorenzo14_1.jpg",
@@ -77,8 +71,7 @@
   {
     "club": "Argentina",
     "nombre": "Argentina 06",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/argentina06.jpg",
       "img/argentina06_1.jpg",
@@ -90,8 +83,7 @@
   {
     "club": "Portugal",
     "nombre": "Portugal 13",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/portugal13.jpg",
       "img/portugal13_1.jpg",
@@ -103,8 +95,7 @@
   {
     "club": "Barcelona",
     "nombre": "Barcelona 11/12",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/barcelonanegra11.jpg",
       "img/barcelonanegra11_1.jpg",
@@ -116,8 +107,7 @@
   {
     "club": "Barcelona",
     "nombre": "Barcelona 14/15",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/barcelona14.jpg",
       "img/barcelona14_1.jpg",
@@ -129,8 +119,7 @@
   {
     "club": "Manchester United",
     "nombre": "Manchester United 08/09",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/manchester08.jpg",
       "img/manchester08_1.jpg",
@@ -141,8 +130,7 @@
   {
     "club": "Real Madrid",
     "nombre": "Real Madrid 11/12",
-    "tipo": "Retro",
-    "version": "Jugador",
+    "version": "Retro",
     "imagenes": [
       "img/madrid11.jpg",
       "img/madrid11_1.jpg",
@@ -153,8 +141,7 @@
   {
     "club": "Atlético Madrid",
     "nombre": "Atlético Madrid 25/26",
-    "tipo": "Actual",
-    "version": "Jugador",
+    "version": "Player",
     "imagenes": [
       "img/atletico25.jpg",
       "img/atletico25_1.jpg",

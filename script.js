@@ -102,7 +102,6 @@ function filtrarCamisetas(searchTerm, filterType) {
         const matchesSearch = camiseta.nombre.toLowerCase().includes(term) || camiseta.club.toLowerCase().includes(term);
         const matchesFilter = (
             filterType === 'all' ||
-            camiseta.tipo === filterType ||
             camiseta.version === filterType
         );
         return matchesSearch && matchesFilter;
