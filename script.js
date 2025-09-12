@@ -34,7 +34,7 @@ function renderizarCatalogo(camisetasToDisplay) {
             </div>
             <div class="camiseta-info">
                 <h3>${camiseta.nombre}</h3>
-                <p>${camiseta.club} | Tipo: ${camiseta.tipo} | Versión: ${camiseta.version}</p>
+                <p>${camiseta.club} | Versión: ${camiseta.version}</p>
                 <a href="${camiseta.link}" class="btn-comprar" target="_blank">
                     <i class="fab fa-whatsapp"></i> Consultar
                 </a>
