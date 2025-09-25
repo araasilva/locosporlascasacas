@@ -26,13 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
     detalleSliderContainer.innerHTML = sliderHTML;
 
     // Genera el HTML de la información
-    const infoHTML = `
-        <h2>${camiseta.club}</h2>
-        <p><strong>Nombre:</strong> ${camiseta.nombre}</p>
-        <p><strong>Versión:</strong> ${camiseta.version}</p>
-        <a href="${camiseta.link}" class="btn-comprar" target="_blank">
-            <i class="fab fa-whatsapp"></i> Consultar
-        </a>
+    const infoHTML = `    
+        <div class="camiseta-info">   
+            <h2>${camiseta.club}</h2>
+            <p><strong>Nombre:</strong> ${camiseta.nombre}</p>
+            <p><strong>Versión:</strong> ${camiseta.version}</p>
+            <a href="${camiseta.link}" class="btn-comprar" target="_blank">
+                <i class="fab fa-whatsapp"></i> Consultar
+            </a>
+        </div>
     `;
     detalleInfo.innerHTML = infoHTML;
 
