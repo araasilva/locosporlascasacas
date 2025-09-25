@@ -1,235 +1,308 @@
 :root {
-  --celeste-claro: #9CCDEE;
-  --celeste-oscuro: #5B9DD6;
-  --negro: #000000;
-  --blanco: #FFFFFF;
-  --gris-claro: #F5F5F5;
-  --gris-borde: #E0E0E0;
-  --shadow: 0 4px 12px rgba(0,0,0,0.08);
-  --radius: 12px;
-  --transition: all 0.3s ease;
+    --primary-color:#5B9DD6 ;/* #004D99; /* Azul oscuro basado en el logo */
+    --secondary-color: #9CCDEE;/*#87CEEB; /* Azul claro */
+    --accent-color: #333; /* Negro */
+    --bg-color: #f4f4f9;
+    --card-bg-color: #ffffff;
+    --text-color: #000000;
+    --light-text-color: #666;
+    --border-radius: 10px;
 }
 
+/* Estilos Generales */
 body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  background: var(--gris-claro);
-  color: var(--negro);
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-/* Header */
-.header {
-  position: sticky;
-  top: 0;
-  background: var(--blanco);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  box-shadow: var(--shadow);
-  z-index: 100;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.logo {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--celeste-oscuro);
+header {
+    background-color: var(--secondary-color);
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.nav {
-  display: flex;
-  gap: 1rem;
+.logo-container img {
+    max-width: 150px;
+   margin-top: 10px;
+}
+.logo-container-detalle img {
+    max-width: 90px;
+   margin-top: 10px;
 }
 
-.nav-btn {
-  background: transparent;
-  border: 1px solid var(--celeste-oscuro);
-  color: var(--celeste-oscuro);
-  padding: 0.5rem 1.2rem;
-  border-radius: 20px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
+/* Controles de Búsqueda y Filtros */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.nav-btn:hover {
-  background: var(--celeste-oscuro);
-  color: var(--blanco);
+.search-bar input {
+    width: 98%;
+    padding: 10px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
 }
 
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary-color);
 }
 
-#buscador {
-  padding: 0.6rem 1rem;
-  border-radius: 20px;
-  border: 1px solid var(--gris-borde);
-  outline: none;
-  transition: var(--transition);
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-#buscador:focus {
-  border-color: var(--celeste-oscuro);
-  box-shadow: 0 0 0 2px rgba(91, 157, 214, 0.3);
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #e0e0e0;
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 600;
 }
 
-.carrito {
-  font-size: 1.2rem;
-  cursor: pointer;
-  background: var(--celeste-oscuro);
-  color: var(--blanco);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+.filter-btn:hover {
+    background-color: #d0d0d0;
 }
 
-/* Productos */
-.productos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: scale(1.05);
 }
 
-.card {
-  background: var(--blanco);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: var(--transition);
+/* Catálogo de Camisetas (Grid) */
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+.camiseta-card {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
 }
 
-.card img {
-  width: 100%;
-  cursor: pointer;
-  border-bottom: 1px solid var(--gris-borde);
+.camiseta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-.card h3 {
-  font-size: 1.1rem;
-  margin: 0.8rem 0 0.2rem;
+.camiseta-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
 }
 
-.card p {
-  margin: 0.2rem 0 1rem;
-  color: #555;
-  font-weight: 500;
+.camiseta-info {
+    padding: 20px;
 }
 
-.card select {
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--gris-borde);
-  margin-bottom: 1rem;
+.camiseta-info h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: 700;
 }
 
-.card button {
-  background: var(--celeste-oscuro);
-  color: var(--blanco);
-  border: none;
-  border-radius: 8px;
-  padding: 0.7rem;
-  cursor: pointer;
-  transition: var(--transition);
+.camiseta-info p {
+    margin: 0 0 15px;
+    color: var(--light-text-color);
+    font-size: 14px;
 }
 
-.card button:hover {
-  background: var(--celeste-claro);
+.camiseta-info .btn-comprar {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: 600;
 }
 
-/* Slider */
-.slider {
-  position: relative;
-  overflow: hidden;
+.camiseta-info .btn-comprar:hover {
+    background-color: var(--accent-color);
 }
 
-.slide {
-  display: none;
+/* Botón flotante de WhatsApp */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25d366;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    z-index: 1000;
 }
 
-.active {
-  display: block;
+.whatsapp-btn:hover {
+    transform: scale(1.1);
 }
 
-.slider button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: var(--blanco);
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: var(--transition);
+/* Responsive Design */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-buttons {
+        justify-content: center;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: 2fr;
+    }
+}
+/* Estilos adicionales para el slider */
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Oculta las imágenes que están fuera del contenedor */
 }
 
-.slider button:hover {
-  background: var(--celeste-oscuro);
+.slider-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
+.slider-images img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    flex-shrink: 0; /* Evita que las imágenes se encojan */
 }
 
-.modal-content {
-  background: var(--blanco);
-  padding: 2rem;
-  border-radius: 20px;
-  max-width: 700px;
-  width: 100%;
-  box-shadow: var(--shadow);
-  position: relative;
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    font-size: 20px;
 }
 
-.close {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  cursor: pointer;
-  font-size: 1.5rem;
+.slider-btn.prev {
+    left: 10px;
 }
 
-/* Footer */
-.footer {
-  background: var(--celeste-oscuro);
-  padding: 1rem;
-  text-align: center;
+.slider-btn.next {
+    right: 10px;
+}
+/* Estilos para la página de detalles */
+.back-btn {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
-.btn-finalizar {
-  background: var(--blanco);
-  color: var(--celeste-oscuro);
-  padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
+.back-btn:hover {
+    color: var(--accent-color);
 }
 
-.btn-finalizar:hover {
-  background: var(--celeste-claro);
-  color: var(--blanco);
+.detalle-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#detalle-slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+.slider-full-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-full-images img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Ajusta la imagen completa */
+    flex-shrink: 0;
+}
+
+#detalle-info {
+    text-align: center;
+}
+
+#detalle-info h2 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+#detalle-info p {
+    font-size: 1.2em;
+    color: var(--light-text-color);
+    margin-bottom: 10px;
+}
+
+/* Responsivo para la página de detalles */
+@media (max-width: 768px) {
+    .back-btn {
+        position: static;
+        display: block;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .detalle-content {
+        flex-direction: column;
+    }
 }

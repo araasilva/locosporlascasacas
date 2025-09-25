@@ -1,42 +1,45 @@
-<!DOCTYPE html>
+<!DOCTYPE html>			index
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Locos por las Casacas</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locos por las Casacas - Catálogo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="img/locos-por-las-casacas-logo.png">
+
 </head>
 <body>
-  <header class="header">
-    <div class="logo">Locos por las Casacas</div>
-    <nav class="nav">
-      <button onclick="filtrarCategoria('all')" class="nav-btn">Todas</button>
-      <button onclick="filtrarCategoria('retro')" class="nav-btn">Retro</button>
-      <button onclick="filtrarCategoria('player')" class="nav-btn">Player</button>
-      <button onclick="filtrarCategoria('disponible')" class="nav-btn">Disponibles</button>
-    </nav>
-    <div class="header-actions">
-      <input type="text" id="buscador" placeholder="🔍 Buscar camiseta..." onkeyup="buscarProducto()">
-      <div id="carrito-icono" class="carrito">🛒 <span id="carrito-count">0</span></div>
-    </div>
-  </header>
+    <header>
+        <div class="logo-container">
+            <img src="img/locos-por-las-casacas-logo.png" alt="Locos por las Casacas Logo">
+        </div>
+        <h1>Catálogo de Camisetas</h1>
+    </header>
 
-  <main>
-    <section id="productos" class="productos"></section>
-  </main>
+    <main class="container">
+        <div class="controls">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar por nombre...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todas</button>
+                <button class="filter-btn" data-filter="Retro">Retro</button>
+                <button class="filter-btn" data-filter="Player">Player 25/26</button>
+            </div>
+        </div>
 
-  <!-- Modal detalle -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span id="cerrarModal" class="close">&times;</span>
-      <div id="modal-body"></div>
-    </div>
-  </div>
+        <section id="catalogo" class="catalogo-grid">
+            </section>
+    </main>
 
-  <footer class="footer">
-    <button id="finalizar" class="btn-finalizar">Finalizar Compra</button>
-  </footer>
+    <a href="https://wa.me/5493813011532" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

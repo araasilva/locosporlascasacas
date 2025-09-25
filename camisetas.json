@@ -1,0 +1,152 @@
+[
+  {
+    "club": "Boca Juniors",
+    "nombre": "Boca 93/94",
+    "version": "Retro",
+    "imagenes": [
+      "img/boca93.jpg",
+      "img/boca93_1.jpg",
+      "img/boca93_2.jpg",
+      "img/boca93_3.jpg",
+      "img/boca93_4.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20Boca%2093/94"
+  },
+  {
+    "club": "Boca Juniors",
+    "nombre": "Boca Juniors 07/08",
+    "version": "Retro",
+    "imagenes": [
+      "img/boca07.jpg",
+      "img/boca07_1.jpg",
+      "img/boca07_2.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20Boca%20Juniors%2007/08"
+  },
+  {
+    "club": "Racing Club de Avellaneda",
+    "nombre": "Racing Club de Avellaneda 03/04",
+    "version": "Retro",
+    "imagenes": [
+      "img/racing03.jpg",
+      "img/racing03_1.jpg",
+      "img/racing03_2.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20Racing%2003/04"
+  },
+  {
+    "club": "River Plate",
+    "nombre": "River Plate 96/98",
+    "version": "Retro",
+    "imagenes": [
+      "img/river96.jpg",
+      "img/river96_1.jpg",
+      "img/river96_2.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20River%20Plate%2096/98"
+  },
+  {
+    "club": "River Plate",
+    "nombre": "River Plate titular 25/26",
+    "version": "Player",
+    "imagenes": [
+      "img/river2025.png",
+      "img/river2025_1.png",
+      "img/river2025_2.png",
+      "img/river2025_2.png"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20de%20River%2025/26%20version%20jugador"
+  },
+  {
+    "club": "San Lorenzo de Almagro",
+    "nombre": "San Lorenzo de Almagro 14/15",
+    "version": "Retro",
+    "imagenes": [
+      "img/sanlorenzo14.jpg",
+      "img/sanlorenzo14_1.jpg",
+      "img/sanlorenzo14_2.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20San%20Lorenzo%20de%20Almagro%2014/15"
+  },
+  {
+    "club": "Argentina",
+    "nombre": "Argentina 06",
+    "version": "Retro",
+    "imagenes": [
+      "img/argentina06.jpg",
+      "img/argentina06_1.jpg",
+      "img/argentina06_2.jpg",
+      "img/argentina06_3.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20Argentina%2006"
+  },
+  {
+    "club": "Portugal",
+    "nombre": "Portugal 13",
+    "version": "Retro",
+    "imagenes": [
+      "img/portugal13.jpg",
+      "img/portugal13_1.jpg",
+      "img/portugal13_2.jpg",
+      "img/portugal13_3.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20Portugal%2013"
+  },
+  {
+    "club": "Barcelona",
+    "nombre": "Barcelona 11/12",
+    "version": "Retro",
+    "imagenes": [
+      "img/barcelonanegra11.jpg",
+      "img/barcelonanegra11_1.jpg",
+      "img/barcelonanegra11_2.jpg",
+      "img/barcelonanegra11_3.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20Barcelona%2011/12"
+  },
+  {
+    "club": "Barcelona",
+    "nombre": "Barcelona 14/15",
+    "version": "Retro",
+    "imagenes": [
+      "img/barcelona14.jpg",
+      "img/barcelona14_1.jpg",
+      "img/barcelona14_2.jpg",
+      "img/barcelona14_3.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%20Barcelona%2014/15"
+  },
+  {
+    "club": "Manchester United",
+    "nombre": "Manchester United 08/09",
+    "version": "Retro",
+    "imagenes": [
+      "img/manchester08.jpg",
+      "img/manchester08_1.jpg",
+      "img/manchester08_2.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20de%Manchester%20United%2008/09"
+  },
+  {
+    "club": "Real Madrid",
+    "nombre": "Real Madrid 11/12",
+    "version": "Retro",
+    "imagenes": [
+      "img/madrid11.jpg",
+      "img/madrid11_1.jpg",
+      "img/madrid11_2.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20retro%20del%20Real%20Madrid%2011/12"
+  },
+  {
+    "club": "Atlético Madrid",
+    "nombre": "Atlético Madrid 25/26",
+    "version": "Player",
+    "imagenes": [
+      "img/atletico25.jpg",
+      "img/atletico25_1.jpg",
+      "img/atletico25_2.jpg"
+    ],
+    "link": "https://wa.me/5493813011532?text=Hola,%20me%20interesa%20la%20camiseta%20del%20Atlético%20Madrid%2025/26%20version%20jugador."
+  }
+]

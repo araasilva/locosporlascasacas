@@ -1,109 +1,5 @@
-let productos = [];
-let carrito = [];
-
-document.addEventListener("DOMContentLoaded", async () => {
-  const res = await fetch("productos.json");
-  productos = await res.json();
-  mostrarProductos(productos);
-});
-
-function mostrarProductos(lista) {
-  const contenedor = document.getElementById("productos");
-  contenedor.innerHTML = "";
-  
-  lista.forEach(prod => {
-    let card = document.createElement("div");
-    card.className = "card";
-
-    // Slider
-    let slider = `
-      <div class="slider" id="slider-${prod.id}">
-        ${prod.imagenes.map((img,i) => 
-          `<img src="${img}" class="slide ${i===0?'active':''}" onclick="abrirModal(${prod.id})">`
-        ).join('')}
-        <button class="prev" onclick="moverSlide(${prod.id}, -1)">&#10094;</button>
-        <button class="next" onclick="moverSlide(${prod.id}, 1)">&#10095;</button>
-      </div>
-    `;
-
-    // Talles
-    let tallesHTML = prod.talles.map(t => `<option value="${t}">${t}</option>`).join("");
-
-    card.innerHTML = `
-      ${slider}
-      <h3>${prod.nombre}</h3>
-      <p>$${prod.precio}</p>
-      <select id="talle-${prod.id}">
-        ${tallesHTML}
-      </select>
-      <button onclick="agregarCarrito(${prod.id})">Agregar al carrito</button>
-    `;
-    contenedor.appendChild(card);
-  });
-}
-
-// Slider
-function moverSlide(id, dir) {
-  let slider = document.querySelectorAll(`#slider-${id} .slide`);
-  let actual = Array.from(slider).findIndex(s => s.classList.contains("active"));
-  slider[actual].classList.remove("active");
-  let nuevo = (actual + dir + slider.length) % slider.length;
-  slider[nuevo].classList.add("active");
-}
-
-// Modal detalle
-function abrirModal(id) {
-  const modal = document.getElementById("modal");
-  const body = document.getElementById("modal-body");
-  let prod = productos.find(p => p.id === id);
-
-  body.innerHTML = `
-    <h2>${prod.nombre}</h2>
-    <div class="slider">
-      ${prod.imagenes.map(img => `<img src="${img}" class="slide active">`).join("")}
-    </div>
-    <p>Precio: $${prod.precio}</p>
-    <p>Talles: ${prod.talles.join(", ")}</p>
-  `;
-
-  modal.style.display = "flex";
-}
-
-document.getElementById("cerrarModal").onclick = () => {
-  document.getElementById("modal").style.display = "none";
-};
-
-// Carrito
-function agregarCarrito(id) {
-  let prod = productos.find(p => p.id === id);
-  let talle = document.getElementById(`talle-${id}`).value;
-  carrito.push({...prod, talle});
-  document.getElementById("carrito-count").innerText = carrito.length;
-}
-
-document.getElementById("finalizar").onclick = () => {
-  let mensaje = "Hola! Quiero estas camisetas:\n";
-  carrito.forEach(c => {
-    mensaje += `- ${c.nombre} (Talle: ${c.talle}) $${c.precio}\n`;
-  });
-  let url = `https://wa.me/5491112345678?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, "_blank");
-};
-
-// Filtros
-function filtrarCategoria(cat) {
-  if (cat === "all") mostrarProductos(productos);
-  else mostrarProductos(productos.filter(p => p.categoria === cat));
-}
-
-function buscarProducto() {
-  let texto = document.getElementById("buscador").value.toLowerCase();
-  mostrarProductos(productos.filter(p => p.nombre.toLowerCase().includes(texto)));
-}
-
-
 // Variable global para almacenar las camisetas
-/*let camisetas = [];
+let camisetas = [];
 
 const catalogoContainer = document.getElementById('catalogo');
 const searchInput = document.getElementById('searchInput');
@@ -177,7 +73,7 @@ function renderizarCatalogo(camisetasToDisplay) {
  * Función para mover el slider de una tarjeta específica.
  * NOTA: La lógica del slider ahora necesita la longitud de imágenes 
  * porque ya no usamos el dataset.index para buscar en el array 'camisetas'.
- 
+ */
 function moverSlider(card, direction, totalImages) {
     const sliderImages = card.querySelector('.slider-images');
     const imageWidth = card.offsetWidth;
@@ -206,7 +102,7 @@ function moverSlider(card, direction, totalImages) {
 
 /**
  * Función para filtrar las camisetas.
- 
+ */
 function filtrarCamisetas(searchTerm, filterType) {
     const term = searchTerm.toLowerCase();
     const camisetasFiltradas = camisetas.filter(camiseta => {
@@ -223,7 +119,7 @@ function filtrarCamisetas(searchTerm, filterType) {
 
 /**
  * Carga las camisetas desde el archivo JSON y las muestra.
- 
+ */
 async function cargarCatalogo() {
     try {
         const response = await fetch('camisetas.json');
@@ -257,4 +153,4 @@ filterButtons.forEach(button => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', cargarCatalogo);*/
+document.addEventListener('DOMContentLoaded', cargarCatalogo);
