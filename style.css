@@ -37,6 +37,11 @@ header {
     max-width: 150px;
    margin-top: 10px;
 }
+.logo-container-detalle img {
+    max-width: 90px;
+   margin-top: 10px;
+   background-color: var(--secondary-color);
+}
 
 /* Controles de Búsqueda y Filtros */
 .controls {
