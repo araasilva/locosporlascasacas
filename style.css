@@ -26,10 +26,9 @@ body {
 }
 
 header {
-    background-color: var(--card-bg-color);
+    background-color: var(--secondary-color);
     padding: 10px;
     text-align: center;
-    border-bottom: 2px solid var(--secondary-color);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -40,7 +39,6 @@ header {
 .logo-container-detalle img {
     max-width: 90px;
    margin-top: 10px;
-   background-color: var(--secondary-color);
 }
 
 /* Controles de Búsqueda y Filtros */
@@ -190,7 +188,7 @@ header {
     }
 
     .catalogo-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 2fr;
     }
 }
 /* Estilos adicionales para el slider */
