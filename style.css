@@ -1,10 +1,10 @@
 :root {
-    --primary-color: #004D99; /* Azul oscuro basado en el logo */
-    --secondary-color: #87CEEB; /* Azul claro */
+    --primary-color:#5B9DD6 ;/* #004D99; /* Azul oscuro basado en el logo */
+    --secondary-color: #9CCDEE;/*#87CEEB; /* Azul claro */
     --accent-color: #333; /* Negro */
     --bg-color: #f4f4f9;
     --card-bg-color: #ffffff;
-    --text-color: #333;
+    --text-color: #000000;
     --light-text-color: #666;
     --border-radius: 10px;
 }

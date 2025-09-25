@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Actualiza el título y el botón de WhatsApp
     document.title = camiseta.nombre;
-    document.getElementById('camiseta-nombre').textContent = camiseta.nombre;
+    //document.getElementById('camiseta-nombre').textContent = camiseta.nombre;
     document.getElementById('whatsapp-link').href = camiseta.link;
 
     const detalleSliderContainer = document.getElementById('detalle-slider-container');
@@ -28,9 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Genera el HTML de la información
     const infoHTML = `    
         <div class="camiseta-info">   
-            <h2>${camiseta.club}</h2>
-            <p><strong>Nombre:</strong> ${camiseta.nombre}</p>
-            <p><strong>Versión:</strong> ${camiseta.version}</p>
+            <h2>Camiseta ${camiseta.nombre}</h2>
+            <p><strong>Versión:</strong> ${camiseta.version}</p>            
             <a href="${camiseta.link}" class="btn-comprar" target="_blank">
                 <i class="fab fa-whatsapp"></i> Consultar
             </a>
