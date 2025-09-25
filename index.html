@@ -7,34 +7,34 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Locos por las Casacas</h1>
-    <nav>
-      <ul>
-        <li><button onclick="filtrarCategoria('all')">Todas</button></li>
-        <li><button onclick="filtrarCategoria('retro')">Retro</button></li>
-        <li><button onclick="filtrarCategoria('player')">Player</button></li>
-        <li><button onclick="filtrarCategoria('disponible')">Disponibles</button></li>
-      </ul>
+  <header class="header">
+    <div class="logo">Locos por las Casacas</div>
+    <nav class="nav">
+      <button onclick="filtrarCategoria('all')" class="nav-btn">Todas</button>
+      <button onclick="filtrarCategoria('retro')" class="nav-btn">Retro</button>
+      <button onclick="filtrarCategoria('player')" class="nav-btn">Player</button>
+      <button onclick="filtrarCategoria('disponible')" class="nav-btn">Disponibles</button>
     </nav>
-    <input type="text" id="buscador" placeholder="Buscar camiseta..." onkeyup="buscarProducto()">
-    <div id="carrito-icono">🛒 <span id="carrito-count">0</span></div>
+    <div class="header-actions">
+      <input type="text" id="buscador" placeholder="🔍 Buscar camiseta..." onkeyup="buscarProducto()">
+      <div id="carrito-icono" class="carrito">🛒 <span id="carrito-count">0</span></div>
+    </div>
   </header>
 
   <main>
-    <section id="productos"></section>
+    <section id="productos" class="productos"></section>
   </main>
 
   <!-- Modal detalle -->
   <div id="modal" class="modal">
     <div class="modal-content">
-      <span id="cerrarModal">&times;</span>
+      <span id="cerrarModal" class="close">&times;</span>
       <div id="modal-body"></div>
     </div>
   </div>
 
-  <footer>
-    <button id="finalizar">Finalizar Compra</button>
+  <footer class="footer">
+    <button id="finalizar" class="btn-finalizar">Finalizar Compra</button>
   </footer>
 
   <script src="script.js"></script>
