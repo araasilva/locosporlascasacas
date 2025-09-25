@@ -5,10 +5,9 @@ const catalogoContainer = document.getElementById('catalogo');
 const searchInput = document.getElementById('searchInput');
 const filterButtons = document.querySelectorAll('.filter-btn');
 
-/**
- * Función para renderizar las camisetas en el DOM con sliders.
- * @param {Array} camisetasToDisplay - El array de camisetas a mostrar.
- */
+// ------------------------------------------------------------------
+// Función principal corregida: renderizarCatalogo
+// ------------------------------------------------------------------
 function renderizarCatalogo(camisetasToDisplay) {
     catalogoContainer.innerHTML = '';
     if (camisetasToDisplay.length === 0) {
@@ -19,7 +18,9 @@ function renderizarCatalogo(camisetasToDisplay) {
     camisetasToDisplay.forEach((camiseta, index) => {
         const camisetaCard = document.createElement('div');
         camisetaCard.classList.add('camiseta-card');
-        camisetaCard.dataset.index = index;
+        
+        // Ya no necesitamos dataset.index porque pasaremos el objeto completo
+        // camisetaCard.dataset.index = index; 
 
         // Genera el HTML para el slider
         const sliderImagesHTML = camiseta.imagenes.map(src => `<img src="${src}" alt="${camiseta.nombre}" loading="lazy">`).join('');
@@ -34,7 +35,7 @@ function renderizarCatalogo(camisetasToDisplay) {
             </div>
             <div class="camiseta-info">
                 <h3>${camiseta.nombre}</h3>
-                <p>${camiseta.club} | Versión: ${camiseta.version}</p>
+                <p>${camiseta.club} | Tipo: ${camiseta.tipo} | Versión: ${camiseta.version}</p>
                 <a href="${camiseta.link}" class="btn-comprar" target="_blank">
                     <i class="fab fa-whatsapp"></i> Consultar
                 </a>
@@ -47,33 +48,37 @@ function renderizarCatalogo(camisetasToDisplay) {
         const nextBtn = camisetaCard.querySelector('.next');
         
         prevBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita que el clic en el botón active el evento de la tarjeta
-            moverSlider(camisetaCard, 'prev');
+            e.stopPropagation(); 
+            moverSlider(camisetaCard, 'prev', camiseta.imagenes.length); // Pasa la longitud de imágenes
         });
         nextBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita que el clic en el botón active el evento de la tarjeta
-            moverSlider(camisetaCard, 'next');
+            e.stopPropagation(); 
+            moverSlider(camisetaCard, 'next', camiseta.imagenes.length); // Pasa la longitud de imágenes
         });
         
-        // **Agrega el evento de clic a la tarjeta completa**
+        // **CORRECCIÓN CLAVE: Pasar el objeto 'camiseta' al evento**
         camisetaCard.addEventListener('click', () => {
-            localStorage.setItem('camisetaSeleccionada', JSON.stringify(camisetas[index]));
+            // Guardamos la camiseta filtrada/renderizada, no dependemos del índice global
+            localStorage.setItem('camisetaSeleccionada', JSON.stringify(camiseta));
             window.location.href = 'detalle.html';
         });
     });
 }
 
+// ------------------------------------------------------------------
+// Lógica del Slider (Ligeramente modificada)
+// ------------------------------------------------------------------
+
 /**
  * Función para mover el slider de una tarjeta específica.
- * @param {HTMLElement} card - El elemento de la tarjeta.
- * @param {string} direction - 'prev' o 'next'.
+ * NOTA: La lógica del slider ahora necesita la longitud de imágenes 
+ * porque ya no usamos el dataset.index para buscar en el array 'camisetas'.
  */
-function moverSlider(card, direction) {
+function moverSlider(card, direction, totalImages) {
     const sliderImages = card.querySelector('.slider-images');
-    const index = card.dataset.index;
-    const totalImages = camisetas[index].imagenes.length;
     const imageWidth = card.offsetWidth;
-    let newPosition = parseFloat(sliderImages.style.transform.replace('translateX(', '').replace('px)', '')) || 0;
+    // La posición inicial es 0 si no hay transformación previa
+    let newPosition = parseFloat(sliderImages.style.transform.replace('translateX(', '').replace('px)', '')) || 0; 
 
     if (direction === 'next') {
         if (newPosition > -(imageWidth * (totalImages - 1))) {
@@ -91,10 +96,12 @@ function moverSlider(card, direction) {
     sliderImages.style.transform = `translateX(${newPosition}px)`;
 }
 
+// ------------------------------------------------------------------
+// El resto del script se mantiene igual
+// ------------------------------------------------------------------
+
 /**
  * Función para filtrar las camisetas.
- * @param {string} searchTerm - El término de búsqueda del input.
- * @param {string} filterType - El tipo de filtro seleccionado.
  */
 function filtrarCamisetas(searchTerm, filterType) {
     const term = searchTerm.toLowerCase();
@@ -102,16 +109,13 @@ function filtrarCamisetas(searchTerm, filterType) {
         const matchesSearch = camiseta.nombre.toLowerCase().includes(term) || camiseta.club.toLowerCase().includes(term);
         const matchesFilter = (
             filterType === 'all' ||
+            camiseta.tipo === filterType ||
             camiseta.version === filterType
         );
         return matchesSearch && matchesFilter;
     });
     renderizarCatalogo(camisetasFiltradas);
 }
-
-// ----------------------------------------------------
-// Lógica para cargar el JSON y manejar los eventos
-// ----------------------------------------------------
 
 /**
  * Carga las camisetas desde el archivo JSON y las muestra.
