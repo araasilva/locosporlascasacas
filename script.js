@@ -1,191 +1,104 @@
-const DATA_URL = 'products.json';
+let productos = [];
+let carrito = [];
 
-let products = [];
-let cart = {};
-let activeType = 'all';
-
-// estado modal
-let currentProduct = null;
-let currentImageIndex = 0;
-
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadProducts();
-  setupUI();
-  renderProducts();
-  renderCart();
+document.addEventListener("DOMContentLoaded", async () => {
+  const res = await fetch("productos.json");
+  productos = await res.json();
+  mostrarProductos(productos);
 });
 
-async function loadProducts() {
-  const res = await fetch(DATA_URL);
-  products = await res.json();
-}
+function mostrarProductos(lista) {
+  const contenedor = document.getElementById("productos");
+  contenedor.innerHTML = "";
+  
+  lista.forEach(prod => {
+    let card = document.createElement("div");
+    card.className = "card";
 
-function setupUI() {
-  document.querySelectorAll('.tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
-      activeType = btn.dataset.type;
-      renderProducts();
-    });
-  });
-
-  document.getElementById('search').addEventListener('input', renderProducts);
-
-  document.getElementById('clear-cart').addEventListener('click', () => {
-    cart = {};
-    renderCart();
-  });
-
-  document.getElementById('whatsapp').addEventListener('click', () => {
-    if (Object.keys(cart).length === 0) {
-      alert('El carrito está vacío.');
-      return;
-    }
-    const message = buildWhatsAppMessage();
-    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
-  });
-
-  // modal
-  document.getElementById('modal-close').addEventListener('click', closeModal);
-  document.querySelector('.slide-btn.prev').addEventListener('click', () => changeImage(-1));
-  document.querySelector('.slide-btn.next').addEventListener('click', () => changeImage(1));
-  document.getElementById('modal-add').addEventListener('click', () => {
-    const size = document.getElementById('modal-size').value;
-    if (!size) {
-      alert('Selecciona un talle');
-      return;
-    }
-    addToCart(currentProduct.id, size);
-    closeModal();
-  });
-}
-
-function filterProducts() {
-  const q = document.getElementById('search').value.trim().toLowerCase();
-  return products.filter(p => {
-    if (activeType !== 'all' && p.category !== activeType) return false;
-    if (q && !p.name.toLowerCase().includes(q)) return false;
-    return true;
-  });
-}
-
-function renderProducts() {
-  const grid = document.getElementById('product-grid');
-  grid.innerHTML = '';
-  const list = filterProducts();
-
-  for (const p of list) {
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.innerHTML = `
-      <div class="product-img" data-id="${p.id}">
-        <img src="${p.images[0]}" alt="${p.name}" />
-      </div>
-      <div class="meta">
-        <div class="title">${p.name}</div>
-        <div class="price">$${p.price}</div>
-      </div>
-      <div style="color:${p.available ? '#2a7a2a' : '#aa2a2a'};">
-        ${p.available ? 'Disponible' : 'No disponible'}
+    // Slider
+    let slider = `
+      <div class="slider" id="slider-${prod.id}">
+        ${prod.imagenes.map((img,i) => 
+          `<img src="${img}" class="slide ${i===0?'active':''}" onclick="abrirModal(${prod.id})">`
+        ).join('')}
+        <button class="prev" onclick="moverSlide(${prod.id}, -1)">&#10094;</button>
+        <button class="next" onclick="moverSlide(${prod.id}, 1)">&#10095;</button>
       </div>
     `;
-    grid.appendChild(card);
 
-    card.querySelector('.product-img').addEventListener('click', () => openModal(p.id));
-  }
-}
+    // Talles
+    let tallesHTML = prod.talles.map(t => `<option value="${t}">${t}</option>`).join("");
 
-function openModal(id) {
-  currentProduct = products.find(p => p.id === id);
-  if (!currentProduct) return;
-
-  currentImageIndex = 0;
-  document.getElementById('modal-img').src = currentProduct.images[currentImageIndex];
-  document.getElementById('modal-name').textContent = currentProduct.name;
-  document.getElementById('modal-price').textContent = `$${currentProduct.price}`;
-  document.getElementById('modal-availability').textContent = currentProduct.available ? 'Disponible' : 'No disponible';
-
-  const sizeSelect = document.getElementById('modal-size');
-  sizeSelect.innerHTML = '';
-  currentProduct.sizes.forEach(s => {
-    const opt = document.createElement('option');
-    opt.value = s;
-    opt.textContent = s;
-    sizeSelect.appendChild(opt);
+    card.innerHTML = `
+      ${slider}
+      <h3>${prod.nombre}</h3>
+      <p>$${prod.precio}</p>
+      <select id="talle-${prod.id}">
+        ${tallesHTML}
+      </select>
+      <button onclick="agregarCarrito(${prod.id})">Agregar al carrito</button>
+    `;
+    contenedor.appendChild(card);
   });
-
-  document.getElementById('product-modal').classList.remove('hidden');
 }
 
-function closeModal() {
-  document.getElementById('product-modal').classList.add('hidden');
-  currentProduct = null;
+// Slider
+function moverSlide(id, dir) {
+  let slider = document.querySelectorAll(`#slider-${id} .slide`);
+  let actual = Array.from(slider).findIndex(s => s.classList.contains("active"));
+  slider[actual].classList.remove("active");
+  let nuevo = (actual + dir + slider.length) % slider.length;
+  slider[nuevo].classList.add("active");
 }
 
-function changeImage(dir) {
-  if (!currentProduct) return;
-  currentImageIndex = (currentImageIndex + dir + currentProduct.images.length) % currentProduct.images.length;
-  document.getElementById('modal-img').src = currentProduct.images[currentImageIndex];
+// Modal detalle
+function abrirModal(id) {
+  const modal = document.getElementById("modal");
+  const body = document.getElementById("modal-body");
+  let prod = productos.find(p => p.id === id);
+
+  body.innerHTML = `
+    <h2>${prod.nombre}</h2>
+    <div class="slider">
+      ${prod.imagenes.map(img => `<img src="${img}" class="slide active">`).join("")}
+    </div>
+    <p>Precio: $${prod.precio}</p>
+    <p>Talles: ${prod.talles.join(", ")}</p>
+  `;
+
+  modal.style.display = "flex";
 }
 
-function addToCart(id, size) {
-  const key = `${id}-${size}`;
-  const p = products.find(x => x.id === id);
-  if (!cart[key]) {
-    cart[key] = { product: p, size, qty: 1 };
-  } else {
-    cart[key].qty++;
-  }
-  renderCart();
+document.getElementById("cerrarModal").onclick = () => {
+  document.getElementById("modal").style.display = "none";
+};
+
+// Carrito
+function agregarCarrito(id) {
+  let prod = productos.find(p => p.id === id);
+  let talle = document.getElementById(`talle-${id}`).value;
+  carrito.push({...prod, talle});
+  document.getElementById("carrito-count").innerText = carrito.length;
 }
 
-function renderCart() {
-  const container = document.getElementById('cart-items');
-  container.innerHTML = '';
-  const keys = Object.keys(cart);
-
-  if (keys.length === 0) {
-    container.innerHTML = `<div>Tu carrito está vacío.</div>`;
-  } else {
-    for (const k of keys) {
-      const item = cart[k];
-      const el = document.createElement('div');
-      el.className = 'cart-item';
-      el.innerHTML = `
-        <img src="${item.product.images[0]}" alt="${item.product.name}" />
-        <div class="info">
-          <div>${item.product.name} (Talle: ${item.size})</div>
-          <div>$${item.product.price} x ${item.qty}</div>
-        </div>
-        <button data-k="${k}" class="btn secondary">-</button>
-        <button data-k="${k}" class="btn secondary">+</button>
-      `;
-      container.appendChild(el);
-
-      el.querySelectorAll('button')[0].addEventListener('click', () => {
-        item.qty--;
-        if (item.qty <= 0) delete cart[k];
-        renderCart();
-      });
-      el.querySelectorAll('button')[1].addEventListener('click', () => {
-        item.qty++;
-        renderCart();
-      });
-    }
-  }
-
-  const total = Object.values(cart).reduce((sum, it) => sum + it.product.price * it.qty, 0);
-  document.getElementById('cart-total').textContent = total.toFixed(2);
-  document.getElementById('cart-count').textContent = Object.values(cart).reduce((s,i)=>s+i.qty,0);
-}
-
-function buildWhatsAppMessage() {
-  const rows = Object.values(cart).map(it => {
-    return `- ${it.product.name} (Talle: ${it.size}) x${it.qty} — $${it.product.price * it.qty}`;
+document.getElementById("finalizar").onclick = () => {
+  let mensaje = "Hola! Quiero estas camisetas:\n";
+  carrito.forEach(c => {
+    mensaje += `- ${c.nombre} (Talle: ${c.talle}) $${c.precio}\n`;
   });
-  const total = Object.values(cart).reduce((sum, it) => sum + it.product.price * it.qty, 0);
-  return `Hola! Me interesa comprar las siguientes camisetas:\n\n${rows.join("\n")}\n\nTotal: $${total}`;
+  let url = `https://wa.me/5491112345678?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, "_blank");
+};
+
+// Filtros
+function filtrarCategoria(cat) {
+  if (cat === "all") mostrarProductos(productos);
+  else mostrarProductos(productos.filter(p => p.categoria === cat));
+}
+
+function buscarProducto() {
+  let texto = document.getElementById("buscador").value.toLowerCase();
+  mostrarProductos(productos.filter(p => p.nombre.toLowerCase().includes(texto)));
 }
 
 

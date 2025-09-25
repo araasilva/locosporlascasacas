@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "nombre": "Camiseta Retro Argentina 86",
+    "categoria": "retro",
+    "imagenes": ["img/argentina1.jpg", "img/argentina2.jpg"],
+    "precio": 12000,
+    "talles": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": 2,
+    "nombre": "Camiseta Player Messi",
+    "categoria": "player",
+    "imagenes": ["img/messi1.jpg", "img/messi2.jpg"],
+    "precio": 15000,
+    "talles": ["M", "L", "XL"]
+  }
+]
+

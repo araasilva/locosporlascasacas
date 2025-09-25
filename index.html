@@ -1,82 +1,42 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Catálogo de Camisetas</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Locos por las Casacas</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        <!-- puedes reemplazar con tu logo -->
-        <img src="locos-por-las-casacas-logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'"/>
-        <h1>Catálogo Casacas</h1>
-      </div>
-
-      <div class="controls">
-        <nav class="tabs" id="tabs">
-          <button data-type="all" class="tab active">Todos</button>
-          <button data-type="Retro" class="tab">Retro</button>
-          <button data-type="Player" class="tab">Player</button>
-          <button data-type="Disponibles" class="tab">Disponibles</button>
-        </nav>
-
-        <div class="search-wrap">
-          <input id="search" type="search" placeholder="Buscar por nombre..." />
-        </div>
-
-        <button id="cart-toggle" class="cart-btn" title="Ver carrito">
-          🛒 <span id="cart-count">0</span>
-        </button>
-      </div>
-    </div>
+  <header>
+    <h1>Locos por las Casacas</h1>
+    <nav>
+      <ul>
+        <li><button onclick="filtrarCategoria('all')">Todas</button></li>
+        <li><button onclick="filtrarCategoria('retro')">Retro</button></li>
+        <li><button onclick="filtrarCategoria('player')">Player</button></li>
+        <li><button onclick="filtrarCategoria('disponible')">Disponibles</button></li>
+      </ul>
+    </nav>
+    <input type="text" id="buscador" placeholder="Buscar camiseta..." onkeyup="buscarProducto()">
+    <div id="carrito-icono">🛒 <span id="carrito-count">0</span></div>
   </header>
 
-  <main class="container main">
-  <section class="product-grid" id="product-grid"></section>
+  <main>
+    <section id="productos"></section>
+  </main>
 
-  <aside class="cart" id="cart">
-    <h2>Carrito</h2>
-    <div id="cart-items" class="cart-items"></div>
-    <div class="cart-footer">
-      <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
-      <div class="cart-actions">
-        <button id="clear-cart" class="btn secondary">Vaciar</button>
-        <button id="whatsapp" class="btn primary">Enviar por WhatsApp</button>
-      </div>
-    </div>
-  </aside>
-</main>
-
-<!-- Modal detalle producto -->
-<div id="product-modal" class="modal hidden">
-  <div class="modal-content">
-    <button id="modal-close" class="modal-close">✖</button>
-    <div class="modal-body">
-      <div class="slider">
-        <button class="slide-btn prev">◀</button>
-        <img id="modal-img" src="" alt="" />
-        <button class="slide-btn next">▶</button>
-      </div>
-      <h2 id="modal-name"></h2>
-      <p id="modal-price"></p>
-      <p id="modal-availability"></p>
-      <label for="modal-size">Talle:</label>
-      <select id="modal-size"></select>
-      <button id="modal-add" class="btn primary">Agregar al carrito</button>
+  <!-- Modal detalle -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="cerrarModal">&times;</span>
+      <div id="modal-body"></div>
     </div>
   </div>
-</div>
 
-  <footer class="site-footer">
-    <div class="container">
-      <small>© Catálogo Casacas - Demo</small>
-    </div>
+  <footer>
+    <button id="finalizar">Finalizar Compra</button>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
