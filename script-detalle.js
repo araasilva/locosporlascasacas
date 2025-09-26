@@ -98,26 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// FUNCIÓN DE GESTIÓN DEL CARRITO (Global)
-function agregarItemACarrito(item) {
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    
-    // Buscar si el producto (por nombre y talle) ya existe
-    const index = carrito.findIndex(p => p.nombre === item.nombre && p.talle === item.talle);
 
-    if (index > -1) {
-        // Si existe, sumar la cantidad
-        carrito[index].cantidad += item.cantidad;
-    } else {
-        // Si no existe, añadir el nuevo artículo
-        carrito.push(item);
-    }
 
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-}
-
-// Asegurarse de que el contador se actualice al cargar la página de detalle
-window.onload = actualizarContadorCarrito;;/*document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     const camiseta = JSON.parse(localStorage.getItem('camisetaSeleccionada'));
 
     if (!camiseta) {

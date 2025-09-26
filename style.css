@@ -464,8 +464,7 @@ header {
 
 .main-product-image {
     width: 100%;
-    height: auto;
-    max-height: 300px; /* Altura máxima para la imagen principal */
+    max-height: 500px; /* Altura máxima para la imagen principal */
     object-fit: contain; /* Asegura que la imagen se vea completa */
     display: block;
 }
