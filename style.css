@@ -1,9 +1,11 @@
 :root {
-    --primary-color:#5B9DD6 ;/* #004D99; /* Azul oscuro basado en el logo */
-    --secondary-color: #9CCDEE;/*#87CEEB; /* Azul claro */
-    --accent-color: #333; /* Negro */
+    --primary-color: #5B9DD6;  /* Azul base del logo (para botones, líneas activas) */
+    --secondary-color: #9CCDEE; /* Azul claro (para hover, acentos más sutiles) */
+    --header-bg-color: #333333; /* Color Oscuro/Negro para replicar la imagen */
+    --accent-color: #000000;   /* Negro puro para texto o hover fuerte */
+    
     --bg-color: #f4f4f9;
-    --card-bg-color: #ffffff;
+    --card-bg-color: #ffffff; /* Blanco, bueno para el texto en fondo oscuro */
     --text-color: #000000;
     --light-text-color: #666;
     --border-radius: 10px;
@@ -22,78 +24,199 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 15px; /* Añadimos padding horizontal para que no se pegue a los bordes */
 }
 
+/* --- HEADER PRINCIPAL --- */
 header {
-    background-color: var(--secondary-color);
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: var(--header-bg-color); /* Usamos el color oscuro aquí */
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4); /* Sombra más fuerte para contraste */
 }
 
-.logo-container img {
-    max-width: 90px;
-   margin-top: 10px;
-}
-.logo-container-detalle img {
-    max-width: 90px;
-   margin-top: 10px;
-}
-
-/* Controles de Búsqueda y Filtros */
-.controls {
+/* --- Fila Superior: Logo | Buscador | Carrito --- */
+.header-top-bar {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 20px 0;
-    padding: 15px;
-    background-color: var(--card-bg-color);
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador blanco sutil */
+}
+
+/* Logo */
+.logo-container img {
+    max-width: 70px;
+    border-radius: 50%;
+}
+
+/* Buscador (Centro) */
+.search-bar {
+    font-family: 'Montserrat', sans-serif;
+    flex-grow: 1;
+    max-width: 600px;
+    margin: 0 30px;
+    position: relative;
 }
 
 .search-bar input {
-    width: 95%;
-    padding: 10px;
-    border: 2px solid var(--secondary-color);
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-}
-
-.search-bar input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
-
-.filter-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    padding: 10px 20px;
+    width: 100%;
+    /* Ajuste de padding: Deja espacio a la derecha para la lupa */
+    padding: 12px 45px 12px 20px; 
     border: none;
-    background-color: #e0e0e0;
-    color: var(--text-color);
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: var(--card-bg-color); /* Fondo blanco para el input */
+}
+
+.search-icon-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: none;
+    border: none;
+    padding: 0 15px; /* Añadimos padding para que la lupa se vea */
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s;
-    font-weight: 600;
+    color: var(--light-text-color); /* Color gris para la lupa */
+    font-size: 18px;
+    transition: color 0.2s;
 }
 
-.filter-btn:hover {
-    background-color: #d0d0d0;
+.search-icon-btn:hover {
+    color: var(--primary-color);
 }
 
+/* Icono de Carrito */
+.user-icons {
+    display: flex;
+    align-items: center;
+    color: var(--card-bg-color); /* Texto/Icono BLANCO en fondo oscuro */
+    width: 100px; 
+    justify-content: flex-end; 
+}
+
+.user-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--card-bg-color); /* Texto BLANCO */
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.2s;
+    padding: 0 5px; 
+}
+
+.user-link i {
+    font-size: 24px;
+    margin-bottom: 2px;
+}
+
+.user-link:hover {
+    color: var(--secondary-color);
+}
+
+.cart-link {
+    position: relative;
+}
+
+.cart-count {
+    /* Mantenemos el color rojo para notificaciones */
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 50%;
+    padding: 1px 5px;
+    line-height: 1.2;
+}
+
+/* --- SEGUNDA FILA: Navegación de Filtros/Categorías (El Navbar) --- */
+.header-nav-filters {
+    padding: 0;
+    background-color: var(--header-bg-color); /* Mismo fondo oscuro */
+    /* Aseguramos que la barra inferior no tenga padding/margin innecesario */
+    margin-bottom: 0; 
+}
+
+.filter-navbar {
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 5px 0;
+    /* Eliminamos el borde inferior aquí, ya que lo pondremos en los links para simular el navbar */
+    border-bottom: none; 
+}
+
+/* Estilo para los botones de filtro (del script) y los nuevos links (a) */
+.filter-btn, .nav-link{
+    flex-shrink: 0;
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    color: var(--secondary-color); /* Color Azul Claro para los links inactivos */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+    border-bottom: 2px solid transparent; /* Base transparente para la línea activa */
+}
+
+/* Hover (al pasar el ratón) */
+.filter-btn:hover, .nav-link:hover {
+    color: var(--card-bg-color); /* Blanco al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Estado Activo para los botones de filtro */
 .filter-btn.active {
-    background-color: var(--primary-color);
-    color: #fff;
-    transform: scale(1.05);
+    color: var(--card-bg-color); /* Blanco para el activo */
+    border-bottom: 2px solid var(--secondary-color); /* Línea de acento AZUL CLARO */
 }
 
+
+/* --- Responsive Design (Sección móvil) --- */
+@media (max-width: 850px) {
+    /* Ajustes para que los elementos fluyan correctamente en móvil */
+
+    .header-top-bar {
+        flex-wrap: wrap; 
+        padding: 10px 15px;
+    }
+
+    .search-bar {
+        order: 3; /* Mueve el buscador a la línea inferior */
+        width: 100%;
+        max-width: 100%;
+        margin: 10px 0;
+    }
+    
+    .logo-container {
+        order: 1;
+        margin-right: auto; 
+    }
+
+    .user-icons {
+        order: 2;
+        width: auto;
+    }
+
+    /* Mantiene los links de filtro desplazables */
+    .filter-navbar {
+        padding: 5px 15px;
+    }
+
+    .container {
+        padding: 0 10px; /* Reducir el padding horizontal general */
+    }
+}
+
+
+/* El resto de tu CSS (Catálogo, Slider, WhatsApp) se mantiene. */
+/* Estilos adicionales para el slider */
 /* Catálogo de Camisetas (Grid) */
 .catalogo-grid {
     display: grid;
@@ -175,23 +298,6 @@ header {
 .whatsapp-btn:hover {
     transform: scale(1.1);
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .filter-buttons {
-        justify-content: center;
-    }
-
-    .catalogo-grid {
-        grid-template-columns: 2fr;
-    }
-}
-/* Estilos adicionales para el slider */
 .slider-container {
     position: relative;
     width: 100%;
@@ -291,18 +397,4 @@ header {
     font-size: 1.2em;
     color: var(--light-text-color);
     margin-bottom: 10px;
-}
-
-/* Responsivo para la página de detalles */
-@media (max-width: 768px) {
-    .back-btn {
-        position: static;
-        display: block;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    .detalle-content {
-        flex-direction: column;
-    }
 }

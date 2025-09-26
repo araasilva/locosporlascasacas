@@ -14,26 +14,39 @@
 </head>
 <body>
     <header>
-        <div class="logo-container">
-            <img src="img/locos-por-las-casacas-logo.png" alt="Locos por las Casacas Logo">
-        </div>
-    </header>
-
-    <main class="container">
-        <h1>Catálogo de Camisetas</h1>
-        <div class="controls">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Buscar por nombre...">
+        <div class="header-top-bar container">
+         
+            <div class="logo-container">
+                <img src="img/locos-por-las-casacas-logo.png" alt="Locos por las Casacas Logo">
             </div>
-            <div class="filter-buttons">
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="¿Qué camiseta buscas?" aria-label="¿Qué camiseta buscas?">
+                <button type="submit" class="search-icon-btn"><i class="fas fa-search"></i></button>
+            </div>
+        
+                <div class="user-icons">
+                <a href="#" class="user-link cart-link">
+                    <i class="fas fa-shopping-cart"></i> Mi carrito
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
+        </div>
+        <nav class="header-nav-filters">
+            <div class="filter-navbar container">
                 <button class="filter-btn active" data-filter="all">Todas</button>
                 <button class="filter-btn" data-filter="Retro">Retro</button>
                 <button class="filter-btn" data-filter="Player">Player 25/26</button>
+                <button class="filter-btn" data-filter="Disponibles">Ver Disponibles</button>
             </div>
-        </div>
+        </nav>
+    </header>
 
+    <main class="container">
+        
         <section id="catalogo" class="catalogo-grid">
-            </section>
+        </section>
     </main>
 
     <a href="https://wa.me/5493813011532" class="whatsapp-btn" target="_blank">
