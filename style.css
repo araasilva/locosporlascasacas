@@ -460,11 +460,15 @@ header {
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0; /* Fondo claro si la imagen no llena */
+    /* CLAVE 1: Limitamos la altura máxima del contenedor principal */
+    max-height: 500px; 
+    /* Si estás en un entorno Flexbox, añadir un min-height puede ayudar a mantener la proporción */
+    min-height: 400px;
 }
 
 .main-product-image {
     width: 100%;
-    max-height: 500px; /* Altura máxima para la imagen principal */
+    height: auto; /* Altura máxima para la imagen principal */
     object-fit: contain; /* Asegura que la imagen se vea completa */
     display: block;
 }
@@ -536,9 +540,9 @@ header {
     cursor: pointer;
     background-color: var(--card-bg-color);
     color: var(--text-color);
+    appearance: none;
     -webkit-appearance: none; /* Eliminar estilo por defecto de select en webkit */
     -moz-appearance: none;    /* Eliminar estilo por defecto de select en mozilla */
-    appearance: none;
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C197.3l-136-136c-2.3-2.3-5.3-3.5-8.4-3.5s-6.1%2C1.2-8.4%2C3.5l-136%2C136c-4.7%2C4.7-4.7%2C12.3%2C0%2C17s12.3%2C4.7%2C17%2C0l127.3-127.3L270%2C214.3c4.7%2C4.7%2C12.3%2C4.7%2C17%2C0S291.7%2C202%2C287%2C197.3z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 10px center;
