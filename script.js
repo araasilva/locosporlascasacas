@@ -5,10 +5,74 @@ const catalogoContainer = document.getElementById('catalogo');
 const searchInput = document.getElementById('searchInput');
 const filterButtons = document.querySelectorAll('.filter-btn');
 
+
+// Asegúrate de que esta función esté definida para actualizar el contador en el header
+function actualizarContadorCarrito() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    const cartCountElement = document.querySelector('.cart-count');
+    
+    if (cartCountElement) {
+        cartCountElement.textContent = totalItems;
+    }
+}
+
+// --- LÓGICA CLAVE: GENERAR MENSAJE DE WHATSAPP ---
+function generarMensajeWhatsApp() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const numeroWhatsApp = '5493813011532'; // ¡Tu número de contacto!
+
+    if (carrito.length === 0) {
+        alert('El carrito está vacío. Agrega productos antes de consultar.');
+        return;
+    }
+
+    let mensaje = "¡Hola! Quisiera encargar las siguientes camisetas:\n\n";
+    let totalPagar = 0;
+
+    carrito.forEach((item, index) => {
+        const subtotal = item.cantidad * item.precioUnitario;
+        totalPagar += subtotal;
+        
+        mensaje += `${index + 1}. *${item.nombre}* (${item.talle}) - ${item.cantidad} unidad(es)\n`;
+        // Opcional: añade el subtotal
+        // mensaje += `   Subtotal: $${subtotal.toLocaleString('es-AR')}\n`; 
+    });
+
+    const totalConFormato = totalPagar.toLocaleString('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 });
+
+    mensaje += `\nPrecio Total Estimado: ${totalConFormato}\n\n`;
+    mensaje += "Por favor, confírmame disponibilidad y pasos para finalizar la compra. ¡Gracias!";
+
+    // Codificar el mensaje para la URL
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    
+    // Generar el enlace de WhatsApp
+    const url = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+    
+    // Abrir el enlace
+    window.open(url, '_blank');
+
+    // Opcional: Limpiar el carrito después de generar el pedido
+    // if (confirm("¿Pedido enviado? ¿Deseas vaciar el carrito ahora?")) {
+    //     localStorage.removeItem('carrito');
+    //     actualizarContadorCarrito();
+    // }
+}
 // ------------------------------------------------------------------
 // Función principal corregida: renderizarCatalogo
 // ------------------------------------------------------------------
 function renderizarCatalogo(camisetasToDisplay) {
+    actualizarContadorCarrito();
+    
+    const cartIconElement = document.querySelector('.cart-link');
+    if (cartIconElement) {
+        cartIconElement.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita que el '#' del enlace redirija
+            generarMensajeWhatsApp();
+        });
+    }
+
     catalogoContainer.innerHTML = '';
     if (camisetasToDisplay.length === 0) {
         catalogoContainer.innerHTML = '<p class="no-results">No se encontraron camisetas que coincidan con la búsqueda. 😔</p>';

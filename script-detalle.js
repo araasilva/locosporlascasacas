@@ -6,11 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Actualiza el título y el enlace de WhatsApp
-    document.title = camiseta.nombre;
-    document.getElementById('whatsapp-link').href = camiseta.link;
-
-    // Elementos del DOM
+    // Elementos del DOM y asignación de datos
     const camisetaNombre = document.getElementById('camiseta-nombre');
     const camisetaPrecio = document.getElementById('camiseta-precio');
     const thumbnailGallery = document.getElementById('thumbnail-gallery');
@@ -18,27 +14,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const quantityInput = document.getElementById('product-quantity');
     const minusBtn = document.querySelector('.quantity-btn.minus');
     const plusBtn = document.querySelector('.quantity-btn.plus');
+    const talleSelect = document.getElementById('talle-select');
+    const addToCartBtn = document.getElementById('add-to-cart-btn');
 
-    // Asignar datos de la camiseta
+    // Actualiza el título y el enlace de WhatsApp (Mantendremos el link de la camiseta por ahora)
+    document.title = camiseta.nombre;
+    document.getElementById('whatsapp-link').href = camiseta.link;
+
     camisetaNombre.textContent = `Camiseta ${camiseta.nombre}`;
-    // Asumiendo que tienes un precio en tu JSON o un valor por defecto.
-    // Si no tienes precio, puedes hardcodearlo o añadirlo al JSON.
-    camisetaPrecio.textContent = `$70.000,00`; // Ejemplo, ajusta si tienes precio en camiseta.
-    mainProductImage.src = camiseta.imagenes[0]; // La primera imagen es la principal por defecto
+    // Si tu JSON no tiene precio, usa este valor. AJUSTA SI ES NECESARIO.
+    camisetaPrecio.textContent = `$70.000,00`; 
+    mainProductImage.src = camiseta.imagenes[0]; 
 
-    // Generar miniaturas
+    // --- Lógica del Slider/Miniaturas (Se mantiene, solo se refactoriza ligeramente) ---
     camiseta.imagenes.forEach((src, index) => {
         const thumbnail = document.createElement('img');
         thumbnail.src = src;
         thumbnail.alt = `Miniatura ${index + 1} de ${camiseta.nombre}`;
         thumbnail.classList.add('thumbnail-item');
         if (index === 0) {
-            thumbnail.classList.add('active'); // Marca la primera como activa
+            thumbnail.classList.add('active'); 
         }
         thumbnail.addEventListener('click', () => {
-            mainProductImage.src = src; // Cambia la imagen principal
-            
-            // Eliminar 'active' de todas las miniaturas y añadirlo a la clicada
+            mainProductImage.src = src; 
             document.querySelectorAll('.thumbnail-item').forEach(item => {
                 item.classList.remove('active');
             });
@@ -47,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         thumbnailGallery.appendChild(thumbnail);
     });
 
-    // Control de cantidad
+    // --- Control de Cantidad (Se mantiene) ---
     minusBtn.addEventListener('click', () => {
         let currentValue = parseInt(quantityInput.value);
         if (currentValue > 1) {
@@ -60,31 +58,66 @@ document.addEventListener('DOMContentLoaded', () => {
         quantityInput.value = currentValue + 1;
     });
 
-    // Evento del botón "Agregar al carrito"
-    document.getElementById('add-to-cart-btn').addEventListener('click', () => {
-        alert(`Agregada ${quantityInput.value} unidad(es) de ${camiseta.nombre} al carrito.`);
-        // Aquí iría la lógica real para añadir al carrito (guardar en localStorage o enviar a un backend)
+    // --- LÓGICA CLAVE DEL CARRITO ---
+    addToCartBtn.addEventListener('click', () => {
+        const cantidad = parseInt(quantityInput.value);
+        const talle = talleSelect.value;
+        const imagen = camiseta.imagenes[0]; // Usamos la primera imagen como miniatura del carrito
+
+        const itemCarrito = {
+            id: `${camiseta.nombre}-${talle}`, // ID único para evitar duplicados
+            nombre: camiseta.nombre,
+            talle: talle,
+            cantidad: cantidad,
+            precioUnitario: 70000, // Hardcodeado por ahora. Reemplazar con el precio real.
+            linkWhatsApp: camiseta.link,
+            imagen: imagen
+        };
+
+        agregarItemACarrito(itemCarrito);
+
+        // Mostrar un feedback rápido al usuario
+        addToCartBtn.textContent = '¡AGREGADO! ✅';
+        setTimeout(() => {
+            addToCartBtn.textContent = 'AGREGAR AL CARRITO';
+        }, 1500);
+
+        // Actualizar el contador del carrito en el header
+        actualizarContadorCarrito();
     });
 
-    // Lógica para el header (si tiene buscador y filtros)
-    // Para que el buscador del header funcione en la página de detalle, 
-    // necesitarías replicar la lógica de filtrado del script.js o redirigir.
-    // Por simplicidad, el buscador en detalle.html de momento no tendrá funcionalidad de filtrado.
+    // Lógica para el header (Redirigir búsqueda)
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                e.preventDefault(); // Previene el envío del formulario
-                const searchTerm = searchInput.value;
-                if (searchTerm) {
-                    // Opcional: podrías guardar el término en localStorage y redirigir al index.html
-                    // localStorage.setItem('searchTerm', searchTerm);
-                    window.location.href = 'index.html'; // Redirige al catálogo para buscar
-                }
+                e.preventDefault(); 
+                window.location.href = 'index.html'; 
             }
         });
     }
-});/*document.addEventListener('DOMContentLoaded', () => {
+});
+
+// FUNCIÓN DE GESTIÓN DEL CARRITO (Global)
+function agregarItemACarrito(item) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    
+    // Buscar si el producto (por nombre y talle) ya existe
+    const index = carrito.findIndex(p => p.nombre === item.nombre && p.talle === item.talle);
+
+    if (index > -1) {
+        // Si existe, sumar la cantidad
+        carrito[index].cantidad += item.cantidad;
+    } else {
+        // Si no existe, añadir el nuevo artículo
+        carrito.push(item);
+    }
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+// Asegurarse de que el contador se actualice al cargar la página de detalle
+window.onload = actualizarContadorCarrito;;/*document.addEventListener('DOMContentLoaded', () => {
     const camiseta = JSON.parse(localStorage.getItem('camisetaSeleccionada'));
 
     if (!camiseta) {
