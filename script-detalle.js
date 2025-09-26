@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const camiseta = JSON.parse(localStorage.getItem('camisetaSeleccionada'));
-
+    const precio = JSON.parse
     if (!camiseta) {
         window.location.href = 'index.html';
         return;

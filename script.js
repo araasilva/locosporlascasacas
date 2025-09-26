@@ -31,26 +31,26 @@ function generarMensajeWhatsApp() {
     let totalPagar = 0;
 
     carrito.forEach((item, index) => {
-        const subtotal = item.cantidad * item.precioUnitario;
+        // Asegúrate de que precioUnitario sea un número antes de multiplicar
+        const precioUnitario = parseFloat(item.precioUnitario) || 0;
+        const subtotal = item.cantidad * precioUnitario;
         totalPagar += subtotal;
         
-        mensaje += `${index + 1}. *${item.nombre}* (${item.talle}) - ${item.cantidad} unidad(es)\n`;
-        // Opcional: añade el subtotal
-        // mensaje += `   Subtotal: $${subtotal.toLocaleString('es-AR')}\n`; 
+        // Formatear el precio unitario para el mensaje
+        const precioFormateado = precioUnitario.toLocaleString('es-AR', { minimumFractionDigits: 0 });
+        
+        mensaje += `${index + 1}. *${item.nombre}* (${item.talle}) - ${item.cantidad} unidad(es) x $${precioFormateado}\n`;
     });
-
+    // Formatear el precio total para el mensaje
     const totalConFormato = totalPagar.toLocaleString('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 });
 
     mensaje += `\nPrecio Total Estimado: ${totalConFormato}\n\n`;
     mensaje += "Por favor, confírmame disponibilidad y pasos para finalizar la compra. ¡Gracias!";
 
-    // Codificar el mensaje para la URL
+    // Codificar y abrir el enlace
     const mensajeCodificado = encodeURIComponent(mensaje);
-    
-    // Generar el enlace de WhatsApp
     const url = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
     
-    // Abrir el enlace
     window.open(url, '_blank');
 
     // Opcional: Limpiar el carrito después de generar el pedido

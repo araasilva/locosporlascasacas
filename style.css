@@ -661,7 +661,7 @@ header {
     }
 
     .main-product-image {
-        max-height: 350px;
+        max-height: 100%;
     }
 
     .product-info-details {
