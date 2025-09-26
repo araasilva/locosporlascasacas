@@ -389,18 +389,294 @@ header {
     object-fit: contain; /* Ajusta la imagen completa */
     flex-shrink: 0;
 }
+/* --- Estilos Específicos para la Página de Detalles --- */
 
-#detalle-info {
-    text-align: center;
+.detalle-page-main {
+    padding-top: 20px; /* Un poco de espacio debajo del header */
 }
 
-#detalle-info h2 {
+.back-to-catalog-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+
+.back-to-catalog-btn:hover {
+    color: var(--accent-color);
+}
+
+.product-detail-layout {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se apilen en pantallas pequeñas */
+    gap: 30px;
+    background-color: var(--card-bg-color);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Galería de Imágenes --- */
+.product-images-gallery {
+    display: flex;
+    gap: 15px;
+    flex: 1 1 55%; /* Ocupa más espacio a la izquierda */
+    min-width: 300px; /* Mínimo para evitar que se comprima demasiado */
+}
+
+.thumbnail-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80px; /* Ancho fijo para las miniaturas */
+}
+
+.thumbnail-item {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.thumbnail-item.active,
+.thumbnail-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(var(--primary-color), 0.5);
+}
+
+.main-image-display {
+    flex-grow: 1; /* Ocupa el espacio restante en la galería */
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Fondo claro si la imagen no llena */
+}
+
+.main-product-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px; /* Altura máxima para la imagen principal */
+    object-fit: contain; /* Asegura que la imagen se vea completa */
+    display: block;
+}
+
+/* --- Detalles del Producto --- */
+.product-info-details {
+    flex: 1 1 40%; /* Ocupa el espacio restante a la derecha */
+    min-width: 280px; /* Mínimo para los detalles */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-info-details h1 {
+    font-size: 2.2em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.price {
     font-size: 2em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.promo-text {
+    font-size: 0.9em;
+    color: var(--light-text-color);
     margin-bottom: 5px;
 }
 
-#detalle-info p {
-    font-size: 1.2em;
-    color: var(--light-text-color);
-    margin-bottom: 10px;
+.discount-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1em;
+    color: green; /* Color para las promociones */
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.discount-info i {
+    color: green;
+}
+
+/* --- Controles de Talle y Cantidad --- */
+.options-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-size: 1.1em;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.talle-selector {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    -webkit-appearance: none; /* Eliminar estilo por defecto de select en webkit */
+    -moz-appearance: none;    /* Eliminar estilo por defecto de select en mozilla */
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C197.3l-136-136c-2.3-2.3-5.3-3.5-8.4-3.5s-6.1%2C1.2-8.4%2C3.5l-136%2C136c-4.7%2C4.7-4.7%2C12.3%2C0%2C17s12.3%2C4.7%2C17%2C0l127.3-127.3L270%2C214.3c4.7%2C4.7%2C12.3%2C4.7%2C17%2C0S291.7%2C202%2C287%2C197.3z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    padding-right: 30px; /* Para que la flecha no tape el texto */
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.quantity-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    color: var(--text-color);
+    transition: background-color 0.2s;
+}
+
+.quantity-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.product-quantity {
+    width: 40px;
+    text-align: center;
+    border: none;
+    font-size: 1em;
+    padding: 8px 0;
+    -moz-appearance: textfield; /* Para ocultar flechas en Firefox */
+}
+/* Ocultar flechas en Chrome, Safari, Edge */
+.product-quantity::-webkit-outer-spin-button,
+.product-quantity::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* --- Botones de Acción --- */
+.add-to-cart-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 20px; /* Espacio antes del botón */
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-whatsapp-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #25d366; /* Verde WhatsApp */
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.btn-whatsapp-detail:hover {
+    background-color: #128c7e;
+}
+
+
+/* --- Responsive para Detalle de Producto --- */
+@media (max-width: 768px) {
+    .product-detail-layout {
+        flex-direction: column; /* Apila las imágenes y detalles */
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .product-images-gallery {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .thumbnail-gallery {
+        flex-direction: row; /* Miniaturas horizontales */
+        flex-wrap: wrap; /* Permite que las miniaturas fluyan */
+        justify-content: center;
+        width: 100%;
+        order: 2; /* Las miniaturas van debajo de la imagen principal */
+    }
+    
+    .thumbnail-item {
+        width: 60px;
+        height: 60px;
+    }
+
+    .main-image-display {
+        order: 1; /* La imagen principal va primero */
+        width: 100%;
+    }
+
+    .main-product-image {
+        max-height: 350px;
+    }
+
+    .product-info-details {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .product-info-details h1 {
+        font-size: 1.8em;
+    }
+
+    .price {
+        font-size: 1.8em;
+    }
+
+    .quantity-control {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 }

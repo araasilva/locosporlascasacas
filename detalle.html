@@ -7,32 +7,89 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="img/locos-por-las-casacas-logo.png">
 </head>
 <body>
-    <header>
-        <a href="index.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-        </a>
-        <div class="logo-container-detalle">
-            <img src="img/locos-por-las-casacas-logo.png" alt="Locos por las Casacas Logo">
+   <header>
+        <div class="header-top-bar container">
+         
+            <div class="logo-container">
+                <img src="img/locos-por-las-casacas-logo.png" alt="Locos por las Casacas Logo">
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="¿Qué camiseta buscas?" aria-label="¿Qué camiseta buscas?">
+                <button type="submit" class="search-icon-btn"><i class="fas fa-search"></i></button>
+            </div>
+        
+                <div class="user-icons">
+                <a href="#" class="user-link cart-link">
+                    <i class="fas fa-shopping-cart"></i> Mi carrito
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
         </div>
+        <nav class="header-nav-filters">
+            <div class="filter-navbar container">
+                <button class="filter-btn active" data-filter="all">Todas</button>
+                <button class="filter-btn" data-filter="Retro">Retro</button>
+                <button class="filter-btn" data-filter="Player">Player 25/26</button>
+                <button class="filter-btn" data-filter="Disponibles">Ver Disponibles</button>
+            </div>
+        </nav>
     </header>
 
-    <main class="container">
-        <section class="detalle-content">
-            <div id="detalle-slider-container">
+    <main class="container detalle-page-main">
+        <a href="index.html" class="back-to-catalog-btn">
+            <i class="fas fa-arrow-left"></i> Volver al Catálogo
+        </a>
+
+        <section class="product-detail-layout">
+            <div class="product-images-gallery">
+                <div id="thumbnail-gallery" class="thumbnail-gallery">
+                    </div>
+                <div class="main-image-display">
+                    <img id="main-product-image" src="" alt="Camiseta principal">
                 </div>
-            <div id="detalle-info">
+            </div>
+
+            <div class="product-info-details">
+                <h1 id="camiseta-nombre"></h1>
+                <p class="price" id="camiseta-precio"></p>
+                <p class="promo-text">
+                    Puedes aprovechar esta promoción en cualquier producto de la tienda.
+                </p>
+                <p class="discount-info">
+                    <i class="fas fa-tag"></i> 10% de descuento pagando con Transferencia Bancaria o Depósito (10% OFF)
+                </p>
+
+                <div class="options-group">
+                    <label for="talle-select">Talle</label>
+                    <div class="quantity-control">
+                        <select id="talle-select" class="talle-selector">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                        <div class="quantity-input">
+                            <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" value="1" min="1" class="product-quantity" id="product-quantity">
+                            <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
                 </div>
+
+                <button class="add-to-cart-btn" id="add-to-cart-btn">AGREGAR AL CARRITO</button>
+                <a href="#" id="whatsapp-link" class="btn-whatsapp-detail" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+                </a>
+            </div>
         </section>
     </main>
-
-    <a href="#" id="whatsapp-link" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <script src="script-detalle.js"></script>
 </body>

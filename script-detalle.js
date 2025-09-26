@@ -2,6 +2,92 @@ document.addEventListener('DOMContentLoaded', () => {
     const camiseta = JSON.parse(localStorage.getItem('camisetaSeleccionada'));
 
     if (!camiseta) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // Actualiza el título y el enlace de WhatsApp
+    document.title = camiseta.nombre;
+    document.getElementById('whatsapp-link').href = camiseta.link;
+
+    // Elementos del DOM
+    const camisetaNombre = document.getElementById('camiseta-nombre');
+    const camisetaPrecio = document.getElementById('camiseta-precio');
+    const thumbnailGallery = document.getElementById('thumbnail-gallery');
+    const mainProductImage = document.getElementById('main-product-image');
+    const quantityInput = document.getElementById('product-quantity');
+    const minusBtn = document.querySelector('.quantity-btn.minus');
+    const plusBtn = document.querySelector('.quantity-btn.plus');
+
+    // Asignar datos de la camiseta
+    camisetaNombre.textContent = `Camiseta ${camiseta.nombre}`;
+    // Asumiendo que tienes un precio en tu JSON o un valor por defecto.
+    // Si no tienes precio, puedes hardcodearlo o añadirlo al JSON.
+    camisetaPrecio.textContent = `$70.000,00`; // Ejemplo, ajusta si tienes precio en camiseta.
+    mainProductImage.src = camiseta.imagenes[0]; // La primera imagen es la principal por defecto
+
+    // Generar miniaturas
+    camiseta.imagenes.forEach((src, index) => {
+        const thumbnail = document.createElement('img');
+        thumbnail.src = src;
+        thumbnail.alt = `Miniatura ${index + 1} de ${camiseta.nombre}`;
+        thumbnail.classList.add('thumbnail-item');
+        if (index === 0) {
+            thumbnail.classList.add('active'); // Marca la primera como activa
+        }
+        thumbnail.addEventListener('click', () => {
+            mainProductImage.src = src; // Cambia la imagen principal
+            
+            // Eliminar 'active' de todas las miniaturas y añadirlo a la clicada
+            document.querySelectorAll('.thumbnail-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            thumbnail.classList.add('active');
+        });
+        thumbnailGallery.appendChild(thumbnail);
+    });
+
+    // Control de cantidad
+    minusBtn.addEventListener('click', () => {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    });
+
+    plusBtn.addEventListener('click', () => {
+        let currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+    });
+
+    // Evento del botón "Agregar al carrito"
+    document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+        alert(`Agregada ${quantityInput.value} unidad(es) de ${camiseta.nombre} al carrito.`);
+        // Aquí iría la lógica real para añadir al carrito (guardar en localStorage o enviar a un backend)
+    });
+
+    // Lógica para el header (si tiene buscador y filtros)
+    // Para que el buscador del header funcione en la página de detalle, 
+    // necesitarías replicar la lógica de filtrado del script.js o redirigir.
+    // Por simplicidad, el buscador en detalle.html de momento no tendrá funcionalidad de filtrado.
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Previene el envío del formulario
+                const searchTerm = searchInput.value;
+                if (searchTerm) {
+                    // Opcional: podrías guardar el término en localStorage y redirigir al index.html
+                    // localStorage.setItem('searchTerm', searchTerm);
+                    window.location.href = 'index.html'; // Redirige al catálogo para buscar
+                }
+            }
+        });
+    }
+});/*document.addEventListener('DOMContentLoaded', () => {
+    const camiseta = JSON.parse(localStorage.getItem('camisetaSeleccionada'));
+
+    if (!camiseta) {
         // Si no hay datos, redirige al catálogo
         window.location.href = 'index.html';
         return;
@@ -65,4 +151,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         sliderFullImages.style.transform = `translateX(${newPosition}px)`;
     }
-});
+});*/
